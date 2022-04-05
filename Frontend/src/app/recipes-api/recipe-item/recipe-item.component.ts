@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Recipe } from 'src/app/interfaces/recipe';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { faHeart } from '@fortawesome/free-regular-svg-icons'; 
 
 @Component({
@@ -9,17 +8,15 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
   styleUrls: ['./recipe-item.component.scss'],
 })
 export class RecipeItemComponent implements OnInit {
-  closeResult: string;
+ 
 
   @Input() recipe: Recipe;
 
   faHeart = faHeart;
 
-  constructor(private modalService: NgbModal) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
-  openLg(content) {
-    this.modalService.open(content, { size: 'lg' });
-  }
+  
 }

@@ -7,11 +7,12 @@ import { LoginComponent } from './login/login.component';
   providedIn: 'root',
 })
 export class AuthService {
-  private loginUrl = 'localhost:8000/api/login';
+  loginUrl: string = 'http://localhost:8000/api/login';
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) {}
 
-  login(user) {
+  login(user): Observable<any> {
     return this.http.post<any>(this.loginUrl, user);
   }
 }

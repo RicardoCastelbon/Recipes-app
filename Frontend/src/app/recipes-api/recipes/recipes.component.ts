@@ -14,7 +14,13 @@ export class RecipesComponent implements OnInit {
 
   ngOnInit(): void {
     this.recipesApiService
-      .getRecipes()
-      .subscribe((recipes) => (this.recipes = recipes));
+      .getRandomRecipes()
+      .subscribe((res:any)=>{
+        this.recipes = res.recipes.map((res:any)=>res);
+      })
   }
+
+
+  
+  
 }

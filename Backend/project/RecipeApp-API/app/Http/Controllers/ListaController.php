@@ -9,9 +9,13 @@ class ListaController extends Controller
 {
     //CRUD
     // Read all 
-    public function getAllLists()
+    public function getLists($id)
     {
-        $lists = Lista::get()->toJson(JSON_PRETTY_PRINT);
+        $lists = Lista::all()->where('user_id', $id);
+        //$lists = Lista::get()->toJson(JSON_PRETTY_PRINT);
+        if ($lists->isEmpty()) {
+            return response($lists, 204);
+        }
         return response($lists, 200);
     }
     //Read one
@@ -27,18 +31,23 @@ class ListaController extends Controller
         }
     }
     //create one 
-    public function createList(Request $request)
+    public function createList(Request $request, $id)
     {
-        $list = new Lista();
+        $list = Lista::create([
+            'title' => $request['title'],
+            'user_id' => $id
+        ]);
+
+        /* $list = new Lista();
         $list->title = $request->title;
-        $list->save();
+        $list->save(); */
 
         return response()->json([
             "message" => "List created"
         ], 201);
     }
     //Edit one
-    public function updateList(Request $request, $id)
+    /*  public function updateList(Request $request, $id)
     {
         if (Lista::where('id', $id)->exists()) {
             $list = Lista::find($id);
@@ -53,7 +62,7 @@ class ListaController extends Controller
                 "message" => "List not found"
             ], 404);
         }
-    }
+    } */
 
     //Delete one
     public function deleteList($id)
@@ -73,8 +82,8 @@ class ListaController extends Controller
     }
 
     //Search one
-    public function search($title)
+    /* public function search($title)
     {
         return Lista::where('title', 'like', '%' . $title . '%')->get();
-    }
+    } */
 }

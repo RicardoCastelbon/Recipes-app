@@ -16,9 +16,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   loginUser() {
-    this.auth.login(this.loginUserData).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
-    );
+    this.auth.login(this.loginUserData).subscribe({
+      next: (res) => console.log(res),
+      error: (err) => console.log(err),
+      complete: () => console.info('complete'),
+    });
   }
 }

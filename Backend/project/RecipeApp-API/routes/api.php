@@ -19,7 +19,7 @@ use PharIo\Manifest\AuthorCollection;
 //--------------PROTECTED ROUTES------------------------------
 Route::group(['middleware' => ['auth:sanctum']], function () {
     //HTTP POST /characters
-    Route::post('lists', [ListaController::class, 'createList']);
+    Route::post('lists/{id}', [ListaController::class, 'createList']);
 
     //HTTP PUT /characters/{id}
     Route::put('list/{id}', [ListaController::class, 'updateList']);
@@ -29,6 +29,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //LOGOUT
     Route::post('logout', [UserController::class, 'logout']);
+
+    //HTTP GET LISTS BY USER
+    Route::get('lists/{id}', [ListaController::class, 'getLists']);
+
 });
 
 //--------------PUBLIC ROUTES---------------------
@@ -37,9 +41,6 @@ Route::post('register', [UserController::class, 'register']);
 
 //REGISTER 
 Route::post('login', [UserController::class, 'login']);
-
-//HTTP GET /characters
-Route::get('lists', [ListaController::class, 'getAllLists']);
 
 //HTTP GET /characters/{id}
 Route::get('list/{id}', [ListaController::class, 'getList']);
