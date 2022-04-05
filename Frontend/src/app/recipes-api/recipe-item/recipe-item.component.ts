@@ -12,7 +12,7 @@ export class RecipeItemComponent implements OnInit {
 
   @Input() recipe: Recipe;
 
-  faHeart = faHeart;
+  
 
   constructor() {}
 

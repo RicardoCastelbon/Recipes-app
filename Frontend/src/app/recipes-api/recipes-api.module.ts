@@ -7,8 +7,14 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RecipeViewComponent } from './recipe-view/recipe-view.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
-  declarations: [RecipeItemComponent, RecipesComponent, RecipeViewComponent, ],
-  imports: [CommonModule, RecipesApiRoutingModule, FontAwesomeModule],
+  declarations: [RecipeItemComponent, RecipesComponent, RecipeViewComponent],
+  imports: [
+    CommonModule,
+    RecipesApiRoutingModule,
+    FontAwesomeModule,
+    NgbModule,
+  ],
 })
 export class RecipesApiModule {}
