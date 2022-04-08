@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from 'src/app/interfaces/recipe';
+import { Recipe } from 'src/app/interface/recipe';
 import { RecipesApiService } from '../recipes-api.service';
 
 @Component({
@@ -14,13 +14,11 @@ export class RecipesComponent implements OnInit {
 
   ngOnInit(): void {
     this.recipesApiService
-      .getRandomRecipes()
-      .subscribe((res:any)=>{
-        this.recipes = res.recipes.map((res:any)=>res);
-      })
+      .getRecipes()
+      .subscribe((recipes) => (this.recipes = recipes));
+
+    /* this.recipesApiService.getRandomRecipes().subscribe((res: any) => {
+      this.recipes = res.recipes.map((res: any) => res);
+    }); */
   }
-
-
-  
-  
 }

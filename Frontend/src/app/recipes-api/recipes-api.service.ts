@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Recipe } from '../interfaces/recipe';
+import { Recipe } from '../interface/recipe';
 @Injectable({
   providedIn: 'root',
 })
@@ -28,5 +28,11 @@ export class RecipesApiService {
   }
   getRecipeByIdTest(recipeId): Observable<Recipe> {
     return this.http.get<Recipe>(`${this.apiUrl}/${recipeId}`);
+  }
+
+  searchRecipe(query: any, diet: any, dishType: any): Observable<object> {
+    return this.http.get(
+      `${this.apiSpoon}/complexSearch?apiKey=${this.apiKey}&query=${query}&diet=${diet}&type=${dishType}`
+    );
   }
 }

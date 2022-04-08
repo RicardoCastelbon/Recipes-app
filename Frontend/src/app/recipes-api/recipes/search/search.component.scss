@@ -1,0 +1,21 @@
+.btn {
+  box-shadow: none;
+  height: 40px;
+  background-color: #03a9f4;
+  color: #fff;
+  border-radius: 25px;
+  box-shadow: 3px 3px 3px #b1b1b1, -3px -3px 3px #fff;
+  letter-spacing: 1.3px;
+}
+.btn:hover {
+  background-color: #039be5;
+}
+.center{
+    max-width: 40%;
+} 
+.name {
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: 1.3px;
+  color: rgb(3, 169, 244);
+}

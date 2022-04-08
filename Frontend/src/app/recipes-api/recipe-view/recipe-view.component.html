@@ -1,5 +1,10 @@
 <div class="container" *ngIf="recipe">
   <div class="row">
+    <div class="col-sm">
+      <div>
+        <img src="{{ recipe.image }}" alt="" />
+      </div>
+    </div>
     <div class="col-sm text-center mt-5">
       <div class="row">
         <h1 class="name">{{ recipe.title }}</h1>
@@ -26,7 +31,7 @@
             <fa-icon [icon]="faPlate"></fa-icon>
           </div>
           <div class="row">
-            <p>{{ recipe.diets }}</p>
+            <p>{{ recipe.diet }}</p>
           </div>
         </div>
       </div>
@@ -40,11 +45,6 @@
             </select>
             <button class="btn btn-primary mt-3">Add</button>
           </form>
-      </div>
-    </div>
-    <div class="col-sm">
-      <div>
-        <img src="{{ recipe.image }}" alt="" />
       </div>
     </div>
   </div>

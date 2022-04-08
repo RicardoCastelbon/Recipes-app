@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecipesApiService } from '../recipes-api.service';
-import { Recipe } from 'src/app/interfaces/recipe';
+import { Recipe } from 'src/app/interface/recipe';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { faPlateWheat } from '@fortawesome/free-solid-svg-icons';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';

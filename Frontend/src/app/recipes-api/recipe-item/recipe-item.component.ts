@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Recipe } from 'src/app/interfaces/recipe';
+import { Recipe } from 'src/app/interface/recipe';
 import { faHeart } from '@fortawesome/free-regular-svg-icons'; 
 
 @Component({
