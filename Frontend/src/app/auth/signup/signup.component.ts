@@ -1,15 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
+  signupForm: FormGroup;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(
+    public fb: FormBuilder,
+    public authService: AuthService,
+    public router: Router
+  ) {
+    this.signupForm = this.fb.group({
+      name: [''],
+      email: [''],
+      password: [''],
+      password_confirmation: [''],
+    });
   }
 
+  ngOnInit(): void {}
+  registerUser() {
+    this.authService.signUp(this.signupForm.value).subscribe((res) => {
+      if (res.result) {
+        this.signupForm.reset();
+        this.router.navigate(['login']);
+      }
+    });
+  }
 }

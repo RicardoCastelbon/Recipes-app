@@ -6,14 +6,19 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ResetPassComponent } from './reset-pass/reset-pass.component';
 import { SignupComponent } from './signup/signup.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'forgot-password', component: ForgotPassComponent },
-  { path: 'reset-password', component: ResetPassComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  /*{ path: 'logout', component: LogoutComponent },
+   { path: 'forgot-password', component: ForgotPassComponent },
+  { path: 'reset-password', component: ResetPassComponent }, */
+  {
+    path: 'user-dashboard/:id',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

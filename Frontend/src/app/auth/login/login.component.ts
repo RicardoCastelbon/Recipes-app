@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,17 +9,22 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginUserData = {};
+  loginForm: FormGroup;
 
-  constructor(private auth: AuthService) {}
+  constructor(
+    public fb: FormBuilder,
+    public authService: AuthService,
+    public router: Router
+  ) {
+    this.loginForm = this.fb.group({
+      email: [''],
+      password: [''],
+    });
+  }
 
   ngOnInit(): void {}
 
   loginUser() {
-    this.auth.login(this.loginUserData).subscribe({
-      next: (res) => console.log(res),
-      error: (err) => console.log(err),
-      complete: () => console.info('complete'),
-    });
+    this.authService.signIn(this.loginForm.value);
   }
 }

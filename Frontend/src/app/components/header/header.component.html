@@ -6,16 +6,21 @@
           <img src="assets/img/logo.png" alt="" />
         </div>
       </a>
-      
+
       <div class="navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav ms-auto">
+        <div *ngIf="!this.authService.isLoggedIn" class="navbar-nav ms-auto">
           <a routerLink="/login" class="nav-item btn">Login</a>
           <a routerLink="/signup" class="nav-item btn">Sign Up</a>
         </div>
       </div>
-      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+      <div
+        *ngIf="this.authService.isLoggedIn"
+        class="d-inline-block"
+        ngbDropdown
+        #myDrop="ngbDropdown"
+      >
         <button
-          class="btn btn-outline-primary me-2"
+          class="btn btn-outline-primary me-2 color-primary"
           id="dropdownManual"
           ngbDropdownAnchor
           (focus)="myDrop.open()"
@@ -24,11 +29,9 @@
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownManual">
           <a routerLink="dashboard" ngbDropdownItem>DashBoard</a>
-          <button ngbDropdownItem>Logout</button>
+          <button (click)="logout()" class="btn" ngbDropdownItem>Logout</button>
         </div>
       </div>
     </div>
   </nav>
 </div>
-
-

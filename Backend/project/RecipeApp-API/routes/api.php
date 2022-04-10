@@ -18,21 +18,21 @@ use PharIo\Manifest\AuthorCollection;
 */
 //--------------PROTECTED ROUTES------------------------------
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    //HTTP POST /characters
-    Route::post('lists/{id}', [ListaController::class, 'createList']);
-
-    //HTTP PUT /characters/{id}
-    Route::put('list/{id}', [ListaController::class, 'updateList']);
-
-    //HTTP DELETE /characters/{id}
-    Route::delete('list/{id}', [ListaController::class, 'deleteList']);
-
-    //LOGOUT
-    Route::post('logout', [UserController::class, 'logout']);
 
     //HTTP GET LISTS BY USER
     Route::get('lists/{id}', [ListaController::class, 'getLists']);
 
+    //HTTP POST /characters
+    Route::post('lists/{id}', [ListaController::class, 'createList']);
+
+    //HTTP PUT /characters/{id}
+    Route::put('lists/{id}', [ListaController::class, 'updateList']);
+
+    //HTTP DELETE /characters/{id}
+    Route::delete('list/{id}', [ListaController::class, 'deleteList']);
+
+      //LOGOUT
+    Route::post('logout', [UserController::class, 'logout']); 
 });
 
 //--------------PUBLIC ROUTES---------------------
@@ -42,8 +42,8 @@ Route::post('register', [UserController::class, 'register']);
 //REGISTER 
 Route::post('login', [UserController::class, 'login']);
 
-//HTTP GET /characters/{id}
+/* //HTTP GET /characters/{id}
 Route::get('list/{id}', [ListaController::class, 'getList']);
 
 //SEARCH
-Route::get('lists/search/{id}', [ListaController::class], 'search');
+Route::get('lists/search/{id}', [ListaController::class], 'search'); */
