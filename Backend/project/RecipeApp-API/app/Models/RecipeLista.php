@@ -10,10 +10,10 @@ class RecipeLista extends Model
     use HasFactory;
 
     protected $fillable = [
-        'recipe',
+        'title',
         'recipe_id',
         'image',
-        'list_id'
+        'lista_id'
     ]
 
     public function userListas()

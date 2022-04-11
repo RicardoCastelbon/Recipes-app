@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('recipe_listas', function (Blueprint $table) {
             $table->id();
-            $table->string('recipe');
+            $table->string('name');
             $table->integer('recipe_id');
             $table->string('image');
-            $table->foreignId('list_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('lista_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

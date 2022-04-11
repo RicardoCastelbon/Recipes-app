@@ -10,12 +10,16 @@ class Lista extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'user_id'
-    ]
-    ;
+            'title',
+            'user_id'
+        ];
 
-    public function user(){
+    public function recipelista()
+    {
+        return $this->hasMany(RecipeLista::class, "list_id");
+    }
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }
