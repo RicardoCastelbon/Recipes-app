@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListaController;
+use App\Http\Controllers\RecipeListaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,14 +26,24 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   //HTTP GET ONE LIST BY USER
   Route::get('list/{id}', [ListaController::class, 'getList']);
 
-  //HTTP POST /characters
+  //HTTP CREATE LIST
   Route::post('lists/{id}', [ListaController::class, 'createList']);
 
-  //HTTP PUT /characters/{id}
+  //HTTP UPDATE LIST
   Route::put('lists/{id}', [ListaController::class, 'updateList']);
 
-  //HTTP DELETE /characters/{id}
+  //HTTP DELETE LIST
   Route::delete('list/{id}', [ListaController::class, 'deleteList']);
+
+
+  //GET RECIPES IN A LIST
+  Route::get('recipelist/{listId}', [RecipeListaController::class], 'getRecipes');
+
+  //ADD A RECIPE TO A LIST
+  Route::post('recipelist/{listId}', [RecipeListaController::class], 'addRecipe');
+
+  //DELETE A RECIPE FROM A LIST
+  Route::delete('recipelist/{listId}', [RecipeListaController::class, 'deleteRecipe']);
 
   //LOGOUT
   Route::post('logout', [UserController::class, 'logout']);
