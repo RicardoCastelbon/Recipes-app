@@ -19,20 +19,23 @@ use PharIo\Manifest\AuthorCollection;
 //--------------PROTECTED ROUTES------------------------------
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
-    //HTTP GET LISTS BY USER
-    Route::get('lists/{id}', [ListaController::class, 'getLists']);
+  //HTTP GET LISTS BY USER
+  Route::get('lists/{id}', [ListaController::class, 'getLists']);
 
-    //HTTP POST /characters
-    Route::post('lists/{id}', [ListaController::class, 'createList']);
+  //HTTP GET ONE LIST BY USER
+  Route::get('list/{id}', [ListaController::class, 'getList']);
 
-    //HTTP PUT /characters/{id}
-    Route::put('lists/{id}', [ListaController::class, 'updateList']);
+  //HTTP POST /characters
+  Route::post('lists/{id}', [ListaController::class, 'createList']);
 
-    //HTTP DELETE /characters/{id}
-    Route::delete('list/{id}', [ListaController::class, 'deleteList']);
+  //HTTP PUT /characters/{id}
+  Route::put('lists/{id}', [ListaController::class, 'updateList']);
 
-      //LOGOUT
-    Route::post('logout', [UserController::class, 'logout']); 
+  //HTTP DELETE /characters/{id}
+  Route::delete('list/{id}', [ListaController::class, 'deleteList']);
+
+  //LOGOUT
+  Route::post('logout', [UserController::class, 'logout']);
 });
 
 //--------------PUBLIC ROUTES---------------------
