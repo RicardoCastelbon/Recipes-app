@@ -14,4 +14,14 @@ Prerequisites: Angular, Laravel & Docker
 2. In the root of the backend folder execute "docker compose up" to create the container
 3. Atach shell and execute php artisan serve --host 0.0.0.0 --port 8000  serve the backend.(DB info: server->db, user->root, password-> example)
 
+## Steps in develpment
+1. Creation & structure of angular project. It consists in 3 modules: The root module, auth module and recipe module.
+2. Develop of the frontend and fetch the recipes info from the https://spoonacular.com/food-api API.
+3. Creation of the auth & list Api
+4. Integration of the frontend and the backend
+
+## Problems in development
+1. The integration of the frontend and the backend gave me problems and I haven't been able to finish complete the list system.
+2. The Heroku dashboard doens't gives the following error: Item could not be updated. Unknown error. Contact the support
+
 
