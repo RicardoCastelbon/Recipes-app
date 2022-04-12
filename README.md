@@ -2,6 +2,7 @@
 
 ## Stack & resources
 Angular 13 frontend + Laravel 9 API backend
+
 https://spoonacular.com/food-api
 
 ## Description
