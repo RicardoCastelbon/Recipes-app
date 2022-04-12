@@ -8,7 +8,8 @@ import { Recipe } from '../interface/recipe';
 export class RecipesApiService {
   apiUrl = 'http://localhost:5000/recipes';
   apiSpoon = 'https://api.spoonacular.com/recipes';
-  apiKey = 'ba983773378c45db91c031c80df4c244';
+  apiKey="201ac3cb45144b69abb02e0a5790892e";
+  //apiKey = 'ba983773378c45db91c031c80df4c244';
   recipes: Recipe[] = [];
 
   constructor(private http: HttpClient) {}
@@ -18,7 +19,7 @@ export class RecipesApiService {
   }
   getRandomRecipes(): Observable<object> {
     return this.http.get(
-      `${this.apiSpoon}/random?apiKey=${this.apiKey}&number=2`
+      `${this.apiSpoon}/random?apiKey=${this.apiKey}&number=6`
     );
   }
   getRecipeById(recipeId): Observable<Recipe> {

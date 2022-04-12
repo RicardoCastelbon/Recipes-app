@@ -37,10 +37,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
   //GET RECIPES IN A LIST
-  Route::get('recipelist/{listId}', [RecipeListaController::class], 'getRecipes');
+  Route::get('recipelist/{listId}', [RecipeListaController::class, 'getRecipes']);
 
   //ADD A RECIPE TO A LIST
-  Route::post('recipelist-add/{listId}', [RecipeListaController::class], 'addRecipe');
+  Route::post('recipelist-add/{listId}', [RecipeListaController::class, 'addRecipe']);
 
   //DELETE A RECIPE FROM A LIST
   Route::delete('recipelist-delete/{listId}', [RecipeListaController::class, 'deleteRecipe']);

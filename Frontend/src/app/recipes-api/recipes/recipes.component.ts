@@ -13,12 +13,12 @@ export class RecipesComponent implements OnInit {
   constructor(private recipesApiService: RecipesApiService) {}
 
   ngOnInit(): void {
-    this.recipesApiService
+    /*  this.recipesApiService
       .getRecipes()
-      .subscribe((recipes) => (this.recipes = recipes));
+      .subscribe((recipes) => (this.recipes = recipes));  */
 
-    /* this.recipesApiService.getRandomRecipes().subscribe((res: any) => {
+    this.recipesApiService.getRandomRecipes().subscribe((res: any) => {
       this.recipes = res.recipes.map((res: any) => res);
-    }); */
+    });  
   }
 }

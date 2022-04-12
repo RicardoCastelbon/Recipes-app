@@ -25,9 +25,11 @@ export class ListsService {
     return this.http.get<Recipe[]>(api);
   }
 
-  addRecipeToList(listId: number, recipeTitle: string) {
+  addRecipeToList(listId: number, recipeInfo: object) {
+    console.log(listId);
+    console.log(recipeInfo);
     let api = `${this.endPoint}/recipelist-add/${listId}`;
-    return this.http.post<Recipe>(api, recipeTitle);
+    return this.http.post(api, JSON.stringify(recipeInfo));
   }
 
   deleteRecipeFromList(id: number) {
@@ -37,10 +39,23 @@ export class ListsService {
 
   createList(title: string): Observable<List> {
     let api = `${this.endPoint}/list-create/${localStorage.getItem('id')}`;
-    return this.http.post<List>(api, title);
+    return this.http.post<List>(api, title).pipe(catchError(this.handleError));
   }
   deleteList(listId: number) {
     let api = `${this.endPoint}/list-delete/${listId}`;
     return this.http.get(api);
+  }
+
+  // Error
+  handleError(error: HttpErrorResponse) {
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      msg = error.error.message;
+    } else {
+      // server-side error
+      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(msg);
   }
 }

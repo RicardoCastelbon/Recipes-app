@@ -7,7 +7,10 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService) {
+
+    
+  }
 
   logout() {
     this.authService.doLogout();

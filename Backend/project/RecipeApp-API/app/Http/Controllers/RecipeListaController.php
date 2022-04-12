@@ -13,10 +13,10 @@ class RecipeListaController extends Controller
     {
         $recipes = RecipeLista::all()->where('lista_id', $listId);
         //$lists = Lista::get()->toJson(JSON_PRETTY_PRINT);
-       /*  if ($recipes->isEmpty()) {
+          if ($recipes->isEmpty()) {
             return response($recipes, 204);
         }
-        return response($recipes, 200); */
+        return response($recipes, 200); 
     }
 
     //Add
@@ -33,7 +33,7 @@ class RecipeListaController extends Controller
             ]);
             return  response($recipe, 200);
         } else {
-            return $this->errorHandler($exist, 'Recipe exist in the list');
+            return response("The recipe exists in the list", 400);
         }
     }
 

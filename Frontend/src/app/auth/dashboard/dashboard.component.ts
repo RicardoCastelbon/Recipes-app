@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { List } from 'src/app/interface/list';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ListsService } from 'src/app/recipes-api/lists.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -15,24 +18,50 @@ export class DashboardComponent implements OnInit {
   userName!: string;
   userEmail!: string;
 
+  form!: FormGroup;
+
+  listClicked: boolean = false;
+
   constructor(
     public authService: AuthService,
-    private actRoute: ActivatedRoute
+    private actRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    private listsService: ListsService
   ) {
-    let id = this.actRoute.snapshot.paramMap.get('id');
+    let id = localStorage.getItem('id');
     this.authService.getUserLists(id).subscribe((res: List[]) => {
       this.lists = Object.keys(res).map((k) => res[k]);
-      console.log(this.lists);
     });
   }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      listName: '',
+    });
+
     this.userName = localStorage.getItem('name');
     this.userEmail = localStorage.getItem('email');
     console.log(this.userEmail);
   }
 
+  createList(): void {
+    const formInput = this.form.getRawValue();
+    let listName = formInput.query;
+
+    this.listsService.createList(listName).subscribe((res: any) => {});
+  }
+
+  deleteList(listId: number) {
+    console.log(listId);
+    this.listsService.deleteList(listId).subscribe((res: any) => {});
+  }
+
   logout() {
     this.authService.doLogout();
+  }
+
+  onListClicked() {
+    
+    this.listClicked = !this.listClicked;
   }
 }
