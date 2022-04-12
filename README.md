@@ -22,6 +22,6 @@ Prerequisites: Angular, Laravel & Docker
 
 ## Problems in development
 1. The integration of the frontend and the backend gave me problems and I haven't been able to finish complete the list system.
-2. The Heroku dashboard doens't gives the following error: Item could not be updated. Unknown error. Contact the support
+2. The Heroku dashboard doens't let me change the variables and gives the following error: Item could not be updated. Unknown error. Contact the support
 
 
