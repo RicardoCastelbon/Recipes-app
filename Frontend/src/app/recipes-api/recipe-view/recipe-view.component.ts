@@ -5,6 +5,7 @@ import { Recipe } from 'src/app/interface/recipe';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { faPlateWheat } from '@fortawesome/free-solid-svg-icons';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';
+import { ListsService } from '../lists.service';
 @Component({
   selector: 'app-recipe-view',
   templateUrl: './recipe-view.component.html',
@@ -20,7 +21,8 @@ export class RecipeViewComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private recipesApiService: RecipesApiService
+    private recipesApiService: RecipesApiService,
+    private listsService: ListsService
   ) {}
 
   ngOnInit(): void {
@@ -32,4 +34,9 @@ export class RecipeViewComponent implements OnInit {
         this.recipe = recipes;
       });
   }
+
+  addRecipe(){
+    
+  }
+
 }

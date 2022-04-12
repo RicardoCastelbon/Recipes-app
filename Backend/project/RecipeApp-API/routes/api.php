@@ -27,23 +27,23 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::get('list/{id}', [ListaController::class, 'getList']);
 
   //HTTP CREATE LIST
-  Route::post('lists/{id}', [ListaController::class, 'createList']);
+  Route::post('list-create/{id}', [ListaController::class, 'createList']);
 
   //HTTP UPDATE LIST
-  Route::put('lists/{id}', [ListaController::class, 'updateList']);
+  Route::put('list-update/{id}', [ListaController::class, 'updateList']);
 
   //HTTP DELETE LIST
-  Route::delete('list/{id}', [ListaController::class, 'deleteList']);
+  Route::delete('list-delete/{id}', [ListaController::class, 'deleteList']);
 
 
   //GET RECIPES IN A LIST
   Route::get('recipelist/{listId}', [RecipeListaController::class], 'getRecipes');
 
   //ADD A RECIPE TO A LIST
-  Route::post('recipelist/{listId}', [RecipeListaController::class], 'addRecipe');
+  Route::post('recipelist-add/{listId}', [RecipeListaController::class], 'addRecipe');
 
   //DELETE A RECIPE FROM A LIST
-  Route::delete('recipelist/{listId}', [RecipeListaController::class, 'deleteRecipe']);
+  Route::delete('recipelist-delete/{listId}', [RecipeListaController::class, 'deleteRecipe']);
 
   //LOGOUT
   Route::post('logout', [UserController::class, 'logout']);
