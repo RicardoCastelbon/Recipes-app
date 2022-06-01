@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      listName: '',
+      title: '',
     });
 
     this.userName = localStorage.getItem('name');
@@ -45,10 +45,12 @@ export class DashboardComponent implements OnInit {
   }
 
   createList(): void {
-    const formInput = this.form.getRawValue();
-    let listName = formInput.query;
-
-    this.listsService.createList(listName).subscribe((res: any) => {});
+    const title = this.form.getRawValue();
+    //let listName = formInput.query;
+    //console.log(formInput);
+    this.listsService.createList(title).subscribe((res: any) => {
+      console.log(res);
+    });
   }
 
   deleteList(listId: number) {
@@ -61,7 +63,6 @@ export class DashboardComponent implements OnInit {
   }
 
   onListClicked() {
-    
     this.listClicked = !this.listClicked;
   }
 }

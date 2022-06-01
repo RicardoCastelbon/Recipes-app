@@ -56,8 +56,6 @@ Route::post('register', [UserController::class, 'register']);
 //REGISTER 
 Route::post('login', [UserController::class, 'login']);
 
-/* //HTTP GET /characters/{id}
-Route::get('list/{id}', [ListaController::class, 'getList']);
-
+/* 
 //SEARCH
 Route::get('lists/search/{id}', [ListaController::class], 'search'); */

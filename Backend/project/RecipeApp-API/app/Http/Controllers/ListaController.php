@@ -9,20 +9,26 @@ class ListaController extends Controller
 {
     //CRUD
     // Read all 
-    public function getLists($id)
+    public function getLists($userId)
     {
-        $lists = Lista::all()->where('user_id', $id);
+         /*NEED A IF CONDITION TO DON'T BE ABLE TO GET THE LISTS 
+    OF ANOTHER USER
+        if($userId != userId autenticated){
+            return ERROR
+        }
+    */
+        $lists = Lista::all()->where('user_id', $userId);
         //$lists = Lista::get()->toJson(JSON_PRETTY_PRINT);
         if ($lists->isEmpty()) {
             return response($lists, 204);
         }
         return response($lists, 200);
     }
-    //Read one
-    public function getList($id)
+    //GET ONE LIST BY LIST ID
+    public function getList($listId)
     {
-        if (Lista::where('id', $id)->exists()) {
-            $list = Lista::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+        if (Lista::where('id', $listId)->exists()) {
+            $list = Lista::where('id', $listId)->get()->toJson(JSON_PRETTY_PRINT);
             return response($list, 200);
         } else {
             return response()->json([
@@ -31,17 +37,20 @@ class ListaController extends Controller
         }
     }
     //create one 
-    public function createList(Request $request, $id)
+    public function createList(Request $request, $userId)
     {
+        
+    /*NEED A IF CONDITION TO DON'T BE ABLE TO CREATE A LIST 
+    WITH OTHER USER ID
+        if($userId != userId autenticated){
+            return ERROR
+        }
+    */
         $list = Lista::create([
             'title' => $request['title'],
-            'user_id' => $id
+            'user_id' => $userId
         ]);
-
-        /* $list = new Lista();
-        $list->title = $request->title;
-        $list->save(); */
-
+ 
         return response()->json([
             "message" => "List created"
         ], 201);
@@ -65,10 +74,10 @@ class ListaController extends Controller
     } */
 
     //Delete one
-    public function deleteList($id)
+    public function deleteList($listId)
     {
-        if (Lista::where('id', $id)->exists()) {
-            $list = Lista::find($id);
+        if (Lista::where('id', $listId)->exists()) {
+            $list = Lista::find($listId);
             $list->delete();
 
             return response()->json([

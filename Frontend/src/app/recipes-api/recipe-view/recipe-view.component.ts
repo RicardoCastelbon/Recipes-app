@@ -57,8 +57,8 @@ export class RecipeViewComponent implements OnInit {
 
     this.listsService
       .addRecipeToList(listId, recipeInfo)
-      .subscribe((res) => {
-        console.log(res);
+      .subscribe((res: any) => {
+        console.log('Recipe saved successfully');
       });
   }
 }
