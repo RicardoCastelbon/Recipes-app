@@ -20,7 +20,7 @@ class RecipeListaController extends Controller
     }
 
     //Add
-    public function addRecipe($listId, Request $request)
+    public function addRecipe(Request $request, $listId)
     {
         $exist = RecipeLista::where('name', $request['recipeName'])->where('lista_id', $listId);
 
@@ -38,10 +38,10 @@ class RecipeListaController extends Controller
     }
 
     //Delete recipe
-    public function deleteRecipe($id)
+    public function deleteRecipe($recipeId)
     {
-        if (RecipeLista::where('id', $id)->exists()) {
-            $recipe = RecipeLista::find($id);
+        if (RecipeLista::where('id', $recipeId)->exists()) {
+            $recipe = RecipeLista::find($recipeId);
             $recipe->delete();
 
             return response()->json([

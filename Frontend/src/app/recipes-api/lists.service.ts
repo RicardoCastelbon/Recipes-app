@@ -16,8 +16,11 @@ import { Recipe } from '../interface/recipe';
 export class ListsService {
   endPoint: string = 'http://localhost:8000/api';
 
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
-
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
   constructor(private http: HttpClient, public router: Router) {}
 
   getRecipesFromList(listId: number): Observable<Recipe[]> {
@@ -29,7 +32,9 @@ export class ListsService {
     console.log(listId);
     console.log(recipeInfo);
     let api = `${this.endPoint}/recipelist-add/${listId}`;
-    return this.http.post(api, JSON.stringify(recipeInfo));
+    return this.http
+      .post(api, JSON.stringify(recipeInfo), this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
   deleteRecipeFromList(id: number) {
@@ -37,13 +42,15 @@ export class ListsService {
     return this.http.post(api, null);
   }
 
-  createList(title: string): Observable<List> {
+  createList(title: object): Observable<List> {
     let api = `${this.endPoint}/list-create/${localStorage.getItem('id')}`;
-    return this.http.post<List>(api, title).pipe(catchError(this.handleError));
+    console.log(title);
+    return this.http.post<List>(api, JSON.stringify(title), this.httpOptions);
+    /* .pipe(catchError(this.handleError)); */
   }
   deleteList(listId: number) {
     let api = `${this.endPoint}/list-delete/${listId}`;
-    return this.http.get(api);
+    return this.http.delete(api);
   }
 
   // Error
