@@ -8,6 +8,7 @@ import { catchError, Observable, throwError, map } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from './user';
 import { List } from '../interface/list';
+import { Recipe } from '../interface/recipe';
 
 @Injectable({
   providedIn: 'root',
@@ -69,6 +70,19 @@ export class AuthService {
     return this.http
       .get<List[]>(api, { headers: this.headers })
       .pipe(catchError(this.handleError));
+  }
+
+  getRecipesInList(listId: any): Observable<any> {
+    let api = `${this.endPoint}/recipelist/${listId}`;
+    return this.http
+      .get<Recipe[]>(api, { headers: this.headers })
+      .pipe(catchError(this.handleError));
+  }
+
+  deleteRecipeInList(recipeId:any): Observable<any>{
+     let api = `${this.endPoint}/recipelist-delete/${recipeId}`;
+     return this.http.delete(api)
+       .pipe(catchError(this.handleError));
   }
 
   // Error

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { List } from 'src/app/interface/list';
+import { Recipe } from 'src/app/interface/recipe';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ListsService } from 'src/app/recipes-api/lists.service';
 
@@ -14,6 +15,7 @@ export class DashboardComponent implements OnInit {
   currentUser: any = {};
 
   lists: List[] = [];
+  recipes: Recipe[] = [];
 
   userName!: string;
   userEmail!: string;
@@ -48,21 +50,35 @@ export class DashboardComponent implements OnInit {
     const title = this.form.getRawValue();
     //let listName = formInput.query;
     //console.log(formInput);
-    this.listsService.createList(title).subscribe((res: any) => {
-      console.log(res);
-    });
+    this.listsService
+      .createList(title)
+      .subscribe((list) => this.lists.push(list));
   }
 
   deleteList(listId: number) {
-    console.log(listId);
-    this.listsService.deleteList(listId).subscribe((res: any) => {});
+    this.listsService.deleteList(listId).subscribe((res: any) => {
+      console.log(res);
+      this.lists = this.lists.filter((l) => l.id !== listId);
+    });
   }
 
   logout() {
     this.authService.doLogout();
   }
 
-  onListClicked() {
+  onRecipeClicked(id: any) {}
+
+  deleteRecipe(recipeId: any) {
+    this.authService.deleteRecipeInList(recipeId).subscribe(() => {
+      this.recipes = this.recipes.filter((r) => r.id !== recipeId);
+    });
+  }
+
+  onListClicked(id: any) {
     this.listClicked = !this.listClicked;
+    console.log(id);
+    this.authService.getRecipesInList(id).subscribe((res: Recipe[]) => {
+      this.recipes = Object.keys(res).map((k) => res[k]);
+    });
   }
 }
