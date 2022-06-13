@@ -34,16 +34,35 @@ Previous requirements:
 - Composer & Laravel
 # Frontend
 1. Install all the dependencies using:
-`npm install`
+```
+npm install
+```
 2. Start serving with:
-`ng serve`
+```
+ng serve
+```
 # Backend
-1. Mount the containers with:
-`docker compose up`
+1. Mount the container with:
+```
+docker compose up
+```
 2. Attach shell and install laravel dependencies with:
-`composer install`
-3. Start the server with:
-`php artisan serve --host 0.0.0.0 --port 8000`
+```
+composer install
+```
+3. Make an .env file with the following variables inside:
+```
+DB_CONNECTION=mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=recipeappdb
+DB_USERNAME=root
+DB_PASSWORD=example
+```
+4. Start the server with:
+```
+php artisan serve --host 0.0.0.0 --port 8000
+```
 
 ## Project Status
 Project is: _in progress_
